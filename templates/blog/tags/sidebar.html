@@ -24,7 +24,6 @@
                 <li><a href="{% url "blog:refresh" %}" target="_blank">刷新缓存</a></li>
                 <li><a href="{% url 'owntracks:show_dates' %}" target="_blank">运动轨迹记录</a></li>
             {% endif %}
-            <li><a href="http://www.batgm.com" target="_blank" rel="nofollow">BATGM</a></li>
         </ul>
     </aside>
     {% if extra_sidebars %}
@@ -40,13 +39,13 @@
     {% endif %}
     {% if most_read_articles %}
 
-        <aside id="views-4" class="widget widget_views"><h3 class="widget-title">Views</h3>
+        <aside id="views-4" class="widget widget_views"><h3 class="widget-title">点击率</h3>
             <ul>
                 {% for a in most_read_articles %}
                     <li>
                         <a href="{{ a.get_absolute_url }}" title="{{ a.title }}">
                             {{ a.title }}
-                        </a> - {{ a.views }} views
+                        </a> - {{ a.views }} 次
                     </li>
                 {% endfor %}
             </ul>
