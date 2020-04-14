@@ -50,11 +50,11 @@
 
     <div class="entry-content" itemprop="articleBody">
         {% if  isindex %}
-           {% if  query  %} {% highlight article.body with query %} {% else %} {{  article.body }} {% endif %} {{ custom_markdown|escape|truncatechars_content }}
+           {% if  query  %} {% highlight article.body with query %}  {% else %} {{  article.body|custom_markdown|escape|truncatechars_content }} {% endif %}
             <p class='read-more'><a
                     href=' {{ article.get_absolute_url }}'>更多</a></p>
         {% else %}
-            {% if  query  %} {% highlight article.body with query %} {% else %} {{  article.body }} {% endif %}{{ custom_markdown }}
+            {% if  query  %} {% highlight article.body with query %} {% else %} {{  article.body|custom_markdown }} {% endif %}
         {% endif %}
 
     </div><!-- .entry-content -->
