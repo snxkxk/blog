@@ -21,7 +21,7 @@
             {% endif %}
             {% if query and page.object_list %}
                 {% for article in page.object_list %}
-                    {% load_article_detail article.object True user %}
+                    {% load_article_detail article.object True user query %}
                 {% endfor %}
                 {% if page.has_previous or page.has_next %}
                     <nav id="nav-below" class="navigation" role="navigation">

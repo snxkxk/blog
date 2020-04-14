@@ -271,7 +271,7 @@ def load_nav_info():
 
 
 @register.inclusion_tag('blog/tags/article_info.html')
-def load_article_detail(article, isindex, user):
+def load_article_detail(article, isindex, user,query = False):
     """
     加载文章详情
     :param article:
@@ -286,6 +286,8 @@ def load_article_detail(article, isindex, user):
         'isindex': isindex,
         'user': user,
         'open_site_comment': blogsetting.open_site_comment,
+        'query': query,
+
     }
 
 

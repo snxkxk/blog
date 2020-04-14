@@ -1,21 +1,24 @@
 {% load blog_tags %}
 {% load cache %}
+{% load highlight %}
+
 <article id="post-{{ article.pk }} "
          class="post-{{ article.pk }} post type-post status-publish format-standard hentry">
+
     <header class="entry-header">
 
         <h1 class="entry-title">
             {% if  isindex %}
                 {% if article.article_order > 0 %}
                     <a href="{{ article.get_absolute_url }}"
-                       rel="bookmark">【置顶】{{ article.title }}</a>
+                       rel="bookmark">【置顶】{% if  query  %} {% highlight article.title with query %} {% else %} {{  article.title }} {% endif %}</a>
                 {% else %}
                     <a href="{{ article.get_absolute_url }}"
-                       rel="bookmark">{{ article.title }}</a>
+                       rel="bookmark">{% if  query  %} {% highlight article.title with query %} {% else %} {{  article.title }} {% endif %}</a>
                 {% endif %}
 
             {% else %}
-                {{ article.title }}
+                {% if  query  %} {% highlight article.title with query %} {% else %} {{  article.title }} {% endif %}
             {% endif %}
         </h1>
         <div class="comments-link">
@@ -47,15 +50,14 @@
 
     <div class="entry-content" itemprop="articleBody">
         {% if  isindex %}
-            {{ article.body|custom_markdown|escape|truncatechars_content }}
+           {% if  query  %} {% highlight article.body with query %} {% else %} {{  article.body }} {% endif %} {{ custom_markdown|escape|truncatechars_content }}
             <p class='read-more'><a
                     href=' {{ article.get_absolute_url }}'>更多</a></p>
         {% else %}
-            {{ article.body|custom_markdown }}
+            {% if  query  %} {% highlight article.body with query %} {% else %} {{  article.body }} {% endif %}{{ custom_markdown }}
         {% endif %}
 
     </div><!-- .entry-content -->
 
     {% load_article_metas article user %}
-
 </article><!-- #post -->
